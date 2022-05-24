@@ -114,6 +114,16 @@ class host_clg_freebsd64_t(host_t):
 			self.install()
 			self.clean()
 
+class host_github_linux_t(host_clg_pandeb9_t):
+	def __del__(self):
+		"""The destructor."""
+		pass
+
+	def __init__(self, user_args):
+		"""The main constructor."""
+		#---Call parent constructor---#
+		super().__init__(user_args)
+
 
 
 
@@ -122,6 +132,7 @@ class host_clg_freebsd64_t(host_t):
 host_names	= {
 	"clg-pandeb9"	: host_clg_pandeb9_t,
 	"clg-freebsd64"	: host_clg_freebsd64_t,
+	"github-linux"	: host_github_linux_t,
 }
 
 #---Parse the command line---#
