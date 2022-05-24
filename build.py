@@ -89,6 +89,31 @@ class host_clg_pandeb9_t(host_t):
 			self.install()
 			self.clean()
 
+class host_clg_freebsd64_t(host_t):
+	def __del__(self):
+		"""The destructor."""
+		pass
+
+	def __init__(self, user_args):
+		"""The main constructor."""
+		#---Call parent constructor---#
+		super().__init__(user_args)
+
+	def build_all(self):
+		"""Builds all the supported targets."""
+		configure_arg_arr	= [
+			[
+				"x86_64-freebsd",
+				"--with-pic",
+			],
+		]
+		for configure_arg in configure_arg_arr:
+			self.configure(*configure_arg)
+			self.make()
+			self.check()
+			self.install()
+			self.clean()
+
 
 
 
@@ -96,6 +121,7 @@ class host_clg_pandeb9_t(host_t):
 #---Define the hosts---#
 host_names	= {
 	"clg-pandeb9"	: host_clg_pandeb9_t,
+	"clg-freebsd64"	: host_clg_freebsd64_t,
 }
 
 #---Parse the command line---#
